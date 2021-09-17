@@ -109,5 +109,5 @@ class HuffmanCoding:
         with open("files/compressed.txt") as file:
             binary_code = file.read()
             text = self.decode_text(binary_code)
-        with open("files/decomressed.txt", "w") as file:
+        with open("files/decompressed.txt", "w") as file:
             file.write(text)
