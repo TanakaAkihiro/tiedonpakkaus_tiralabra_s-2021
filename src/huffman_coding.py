@@ -1,9 +1,10 @@
 import heapq
 from huffman_node import HuffmanNode
 
+
 class HuffmanCoding:
     '''Class for Huffman coding.
-    
+
     Attributes
     ----------
         path: path for the file that will be compressed/decompressed
@@ -11,12 +12,13 @@ class HuffmanCoding:
         encoding_binary_codes: dictionary for new binary codes for the used characters
         decoding_binary_codes: dictionary for decoding compressed file
     '''
+
     def __init__(self, path):
         self.__path = path
         self.__node_heap = []
         self.__encoding_binary_codes = {}
         self.__decoding_binary_codes = {}
-    
+
     def frequency_dict(self, text):
         '''Create a frequency dictionary.
 
@@ -31,15 +33,16 @@ class HuffmanCoding:
             else:
                 frequency[i] += 1
         return frequency
-    
+
     def order_nodes(self, frequency):
         '''Order nodes by the frequency of its character in order to build a Huffman tree.
         These nodes are the leaves of the Huffman tree.
         '''
         for i, j in frequency.items():
             node = HuffmanNode(i, j)
-            heapq.heappush(self.__node_heap, (node.get_frequency(), id(node), node))
-    
+            heapq.heappush(self.__node_heap,
+                           (node.get_frequency(), id(node), node))
+
     def connect_nodes(self):
         '''Connect the ordered nodes.
         '''
@@ -48,8 +51,9 @@ class HuffmanCoding:
             right_node = heapq.heappop(self.__node_heap)[2]
             new_frequency = left_node.get_frequency() + right_node.get_frequency()
             new_node = HuffmanNode(None, new_frequency, left_node, right_node)
-            heapq.heappush(self.__node_heap, (new_node.get_frequency(), id(new_node), new_node))
-    
+            heapq.heappush(self.__node_heap,
+                           (new_node.get_frequency(), id(new_node), new_node))
+
     def create_binary_codes(self, node, code):
         '''Set binary codes for each character based on their frequency.
         '''
@@ -57,7 +61,7 @@ class HuffmanCoding:
             self.__encoding_binary_codes[node.get_character()] = code
             self.__decoding_binary_codes[code] = node.get_character()
             return
-        
+
         self.create_binary_codes(node.get_left_node(), code+"0")
         self.create_binary_codes(node.get_right_node(), code+"1")
 
@@ -88,7 +92,7 @@ class HuffmanCoding:
                 result += self.__decoding_binary_codes[code]
                 code = ""
         return result
-    
+
     def compress(self):
         '''Compress the given file and rewrite it with the created binary codes on new file.
         '''
@@ -99,7 +103,7 @@ class HuffmanCoding:
             self.connect_nodes()
             self.create_binary_codes(heapq.heappop(self.__node_heap)[2], "")
             binary_code = self.encode_text(text)
-        
+
         with open("files/compressed.txt", "w") as file:
             file.write(binary_code)
 
