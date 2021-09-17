@@ -1,3 +1,6 @@
 __pycache__
 compressed.txt
 decompressed.txt
+htmlcov
+.coverage
+.pytest_cache
