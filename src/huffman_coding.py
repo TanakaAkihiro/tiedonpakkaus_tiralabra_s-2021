@@ -32,5 +32,7 @@ class HuffmanCoding:
     def create_binary_codes(self, node, code):
         if node.get_left_node() is None and node.get_right_node() is None:
             self.__binary_codes[node.get_character()] = code
+            return
         
-        
+        self.create_binary_codes(node.get_left_node(), code+"0")
+        self.create_binary_codes(node.get_right_node(), code+"1")
