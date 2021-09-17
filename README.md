@@ -7,3 +7,9 @@
 ## Viikkoraportit
 
 [Viikko 1](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/viikkoraportit/viikko1.md)
+
+[Viikko 2](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/viikkoraportit/viikko2.md)
+
+## Testikattavuudet
+
+[Viikko 2](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/testikattavuus_vko2.png)
