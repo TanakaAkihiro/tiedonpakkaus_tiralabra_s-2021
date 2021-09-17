@@ -41,7 +41,7 @@ class HuffmanCoding:
         for i, j in frequency.items():
             node = HuffmanNode(i, j)
             heapq.heappush(self.__node_heap,
-                           (node.get_frequency(), id(node), node))
+                           (node.get_frequency, id(node), node))
 
     def connect_nodes(self):
         '''Connect the ordered nodes.
@@ -49,21 +49,21 @@ class HuffmanCoding:
         while len(self.__node_heap) > 1:
             left_node = heapq.heappop(self.__node_heap)[2]
             right_node = heapq.heappop(self.__node_heap)[2]
-            new_frequency = left_node.get_frequency() + right_node.get_frequency()
+            new_frequency = left_node.get_frequency + right_node.get_frequency
             new_node = HuffmanNode(None, new_frequency, left_node, right_node)
             heapq.heappush(self.__node_heap,
-                           (new_node.get_frequency(), id(new_node), new_node))
+                           (new_node.get_frequency, id(new_node), new_node))
 
     def create_binary_codes(self, node, code):
         '''Set binary codes for each character based on their frequency.
         '''
-        if node.get_left_node() is None and node.get_right_node() is None:
-            self.__encoding_binary_codes[node.get_character()] = code
-            self.__decoding_binary_codes[code] = node.get_character()
+        if node.get_left_node is None and node.get_right_node is None:
+            self.__encoding_binary_codes[node.get_character] = code
+            self.__decoding_binary_codes[code] = node.get_character
             return
 
-        self.create_binary_codes(node.get_left_node(), code+"0")
-        self.create_binary_codes(node.get_right_node(), code+"1")
+        self.create_binary_codes(node.get_left_node, code+"0")
+        self.create_binary_codes(node.get_right_node, code+"1")
 
     def encode_text(self, text):
         '''Rewrite the given text with the created binary codes.
