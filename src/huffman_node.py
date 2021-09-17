@@ -15,14 +15,14 @@ class HuffmanNode:
         self.__left = left
         self.__right = right
 
-    def get_character():
+    def get_character(self):
         return self.__character
     
-    def get_frequency():
+    def get_frequency(self):
         return self.__frequency
 
-    def get_left_node():
+    def get_left_node(self):
         return self.__left
     
-    def get_right_node():
+    def get_right_node(self):
         return self.__right
