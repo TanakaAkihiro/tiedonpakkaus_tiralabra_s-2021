@@ -38,17 +38,17 @@ class HuffmanCoding:
         '''
         for i, j in frequency.items():
             node = HuffmanNode(i, j)
-            heapq.heappush(self.__node_heap, (j, node))
+            heapq.heappush(self.__node_heap, (node.get_frequency(), id(node), node))
     
     def connect_nodes(self):
         '''Connect the ordered nodes.
         '''
         while len(self.__node_heap) > 1:
-            left_node = heapq.heappop(self.__node_heap)
-            right_node = heapq.heappop(self.__node_heap)
+            left_node = heapq.heappop(self.__node_heap)[2]
+            right_node = heapq.heappop(self.__node_heap)[2]
             new_frequency = left_node.get_frequency() + right_node.get_frequency()
             new_node = HuffmanNode(None, new_frequency, left_node, right_node)
-            heapq.heappush(self.__node_heap, new_node)
+            heapq.heappush(self.__node_heap, (new_node.get_frequency(), id(new_node), new_node))
     
     def create_binary_codes(self, node, code):
         '''Set binary codes for each character based on their frequency.
@@ -97,17 +97,17 @@ class HuffmanCoding:
             frequency = self.frequency_dict(text)
             self.order_nodes(frequency)
             self.connect_nodes()
-            self.create_binary_codes(heapq.heappop(self.__node_heap), "")
+            self.create_binary_codes(heapq.heappop(self.__node_heap)[2], "")
             binary_code = self.encode_text(text)
         
-        with open("compressed_"+self.__path, "w") as file:
+        with open("files/compressed.txt", "w") as file:
             file.write(binary_code)
 
     def decompress(self):
         '''Decompress the given file.
         '''
-        with open("compressed_" + self.__path) as file:
+        with open("files/compressed.txt") as file:
             binary_code = file.read()
             text = self.decode_text(binary_code)
-        with open("decomressed_" + self.__path, "w") as file:
+        with open("files/decomressed.txt", "w") as file:
             file.write(text)
