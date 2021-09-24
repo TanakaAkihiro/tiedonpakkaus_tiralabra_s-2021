@@ -88,7 +88,7 @@ class HuffmanCoding:
 
         self.create_binary_codes(node.get_left_node, code+"0")
         self.create_binary_codes(node.get_right_node, code+"1")
-    
+
     @property
     def get_encoding_binary_codes(self):
         '''Method for testing the previous method
@@ -127,7 +127,7 @@ class HuffmanCoding:
             bytearray(byte_list): list of numbers that were converted from binary numbers
         '''
         pad_amount = 0
-        while len(code)%8 != 0:
+        while len(code) % 8 != 0:
             code += "0"
             pad_amount += 1
         self.__padding = pad_amount
@@ -177,8 +177,6 @@ class HuffmanCoding:
                 result += self.__decoding_binary_codes[code]
                 code = ""
         return result
-
-
 
     def compress(self):
         '''Compress the given file and rewrite it with the created binary codes on new file.
