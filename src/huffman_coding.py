@@ -18,6 +18,7 @@ class HuffmanCoding:
         self.__node_heap = []
         self.__encoding_binary_codes = {}
         self.__decoding_binary_codes = {}
+        self.__padding = 0
 
     def frequency_dict(self, text):
         '''Create a frequency dictionary.
@@ -97,6 +98,41 @@ class HuffmanCoding:
             result += self.__encoding_binary_codes[char]
         return result
 
+    def pad_binary_code(self, code):
+        '''Pad the encoded text's length in order to make it divisible by 8.
+
+        Returns
+        -------
+            bytearray(byte_list): list of numbers that were converted from binary numbers
+        '''
+        pad_amount = 0
+        while len(code)%8 != 0:
+            code += "0"
+            pad_amount += 1
+        self.__padding = pad_amount
+        division = []
+        length = len(code)
+        for i in range(0, length//8):
+            division.append(code[i*8:(i*8) + 8])
+        byte_list = []
+        for i in division:
+            byte_list.append(int(i, 2))
+        return bytearray(byte_list)
+
+    def decode_byte_code(self, code):
+        '''Convert numbers to binary numbers and connect the binary numbers to make one string
+
+        Returns
+        -------
+            binary_text: text written by binary numerical system
+        '''
+        code = bytes(code)
+        binary_text = ""
+        for i in code:
+            byte = bin(i)[2:].rjust(8, "0")
+            binary_text += str(byte)
+        return binary_text
+
     def decode_text(self, binary_code):
         '''Rewrite the given binary codes to its original form.
 
@@ -107,11 +143,13 @@ class HuffmanCoding:
         result = ""
         code = ""
         for i in binary_code:
-            code += i
+            code += str(i)
             if code in self.__decoding_binary_codes:
                 result += self.__decoding_binary_codes[code]
                 code = ""
         return result
+
+
 
     def compress(self):
         '''Compress the given file and rewrite it with the created binary codes on new file.
@@ -123,15 +161,20 @@ class HuffmanCoding:
             self.connect_nodes()
             self.create_binary_codes(heapq.heappop(self.__node_heap)[2], "")
             binary_code = self.encode_text(text)
+            binary_code = self.pad_binary_code(binary_code)
 
-        with open("files/compressed.txt", "w") as file:
+        with open("../files/compressed.bin", "wb") as file:
             file.write(binary_code)
 
     def decompress(self):
         '''Decompress the given file.
         '''
-        with open("files/compressed.txt") as file:
+        with open("../files/compressed.bin", "rb") as file:
             binary_code = file.read()
+            binary_code = self.decode_byte_code(binary_code)
+            while self.__padding > 0:
+                binary_code = binary_code[:-1]
+                self.__padding -= 1
             text = self.decode_text(binary_code)
-        with open("files/decompressed.txt", "w") as file:
+        with open("../files/decompressed.txt", "w") as file:
             file.write(text)
