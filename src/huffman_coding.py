@@ -23,6 +23,10 @@ class HuffmanCoding:
     def frequency_dict(self, text):
         '''Create a frequency dictionary.
 
+        Args
+        ----
+            text: text of the file
+
         Returns
         -------
             dictionary of characters' frequencies
@@ -38,6 +42,10 @@ class HuffmanCoding:
     def order_nodes(self, frequency):
         '''Order nodes by the frequency of its character in order to build a Huffman tree.
         These nodes are the leaves of the Huffman tree.
+
+        Args
+        ----
+            frequency: dictionary for the frequency of the characters that are used in the text
         '''
         for i, j in frequency.items():
             node = HuffmanNode(i, j)
@@ -67,6 +75,11 @@ class HuffmanCoding:
 
     def create_binary_codes(self, node, code):
         '''Set binary codes for each character based on their frequency.
+
+        Args
+        ----
+            node: root node of the Huffman tree
+            code: binary code that will be given to each character
         '''
         if node.get_left_node is None and node.get_right_node is None:
             self.__encoding_binary_codes[node.get_character] = code
@@ -89,6 +102,10 @@ class HuffmanCoding:
     def encode_text(self, text):
         '''Rewrite the given text with the created binary codes.
 
+        Args
+        ----
+            text: text of the file
+
         Returns
         -------
             result: compressed text
@@ -100,6 +117,10 @@ class HuffmanCoding:
 
     def pad_binary_code(self, code):
         '''Pad the encoded text's length in order to make it divisible by 8.
+
+        Args
+        ----
+            code: encoded text
 
         Returns
         -------
@@ -122,9 +143,13 @@ class HuffmanCoding:
     def decode_byte_code(self, code):
         '''Convert numbers to binary numbers and connect the binary numbers to make one string
 
+        Args
+        ----
+            code: compressed text
+
         Returns
         -------
-            binary_text: text written by binary numerical system
+            binary_text: text written in binary numerical system
         '''
         code = bytes(code)
         binary_text = ""
@@ -135,6 +160,10 @@ class HuffmanCoding:
 
     def decode_text(self, binary_code):
         '''Rewrite the given binary codes to its original form.
+
+        Args
+        ----
+            binary_code: text written in binary numerical system
 
         Returns
         -------
