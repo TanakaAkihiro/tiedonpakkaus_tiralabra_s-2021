@@ -20,3 +20,5 @@
 ## Käytetty aika
 noin 6h
 
+## Koodin laadun seuranta (pylint)
+![kuva](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/pylint2.png)
