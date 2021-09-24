@@ -54,6 +54,16 @@ class HuffmanCoding:
             heapq.heappush(self.__node_heap,
                            (new_node.get_frequency, id(new_node), new_node))
 
+    @property
+    def get_node_heap(self):
+        '''Method for testing two previous methods
+
+        Returns
+        -------
+            node_heap: heap of nodes
+        '''
+        return self.__node_heap
+
     def create_binary_codes(self, node, code):
         '''Set binary codes for each character based on their frequency.
         '''
@@ -64,6 +74,16 @@ class HuffmanCoding:
 
         self.create_binary_codes(node.get_left_node, code+"0")
         self.create_binary_codes(node.get_right_node, code+"1")
+    
+    @property
+    def get_encoding_binary_codes(self):
+        '''Method for testing the previous method
+
+        Returns
+        -------
+            encoding_binary_codes: dictionary to convert text to binary code
+        '''
+        return self.__encoding_binary_codes
 
     def encode_text(self, text):
         '''Rewrite the given text with the created binary codes.
