@@ -15,3 +15,5 @@
 ## Testikattavuudet
 
 [Viikko 2](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/testikattavuus_vko2.png)
+
+[Viikko 2](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/testikattavuus3.png)
