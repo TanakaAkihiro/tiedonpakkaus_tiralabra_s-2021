@@ -62,3 +62,6 @@ class TestHuffmanCoding(unittest.TestCase):
 
     def test_compress(self):
         self.assertEqual(self.huffman_coding.compress(), 35)
+    
+    def test_decompress(self):
+        self.assertEqual(self.huffman_coding.decompress(), 57)
