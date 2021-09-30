@@ -1,7 +1,9 @@
 __pycache__
 text.bin
+text_decompressed.txt
 test-text.txt
 test-text.bin
+test-text_decompressed.txt
 htmlcov
 .coverage
 .pytest_cache
