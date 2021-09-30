@@ -1,4 +1,5 @@
 import heapq
+import os
 from huffman_node import HuffmanNode
 
 
@@ -180,6 +181,10 @@ class HuffmanCoding:
 
     def compress(self):
         '''Compress the given file and rewrite it with the created binary codes on new file.
+
+        Returns
+        -------
+            len(binary_code): size of compressed file
         '''
         with open(self.__path) as file:
             text = file.read()
@@ -190,18 +195,20 @@ class HuffmanCoding:
             binary_code = self.encode_text(text)
             binary_code = self.pad_binary_code(binary_code)
 
-        with open("../files/compressed.bin", "wb") as file:
+        with open(os.path.splitext(self.__path)[0]+".bin", "wb") as file:
             file.write(binary_code)
+        
+        return len(binary_code)
 
     def decompress(self):
         '''Decompress the given file.
         '''
-        with open("../files/compressed.bin", "rb") as file:
+        with open(os.path.splitext(self.__path)[0] + ".bin", "rb") as file:
             binary_code = file.read()
             binary_code = self.decode_byte_code(binary_code)
             while self.__padding > 0:
                 binary_code = binary_code[:-1]
                 self.__padding -= 1
             text = self.decode_text(binary_code)
-        with open("../files/decompressed.txt", "w") as file:
+        with open(os.path.splitext(self.__path)[0] + "_decompressed.txt", "w") as file:
             file.write(text)
