@@ -229,6 +229,18 @@ atomicwrites = {version = ">=1.0", markers = "sys_platform == \"win32\""}
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
 [[package]]
+name = "pytest-dotenv"
+version = "0.5.2"
+description = "A py.test plugin that parses environment files before running tests"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+python-dotenv = ">=0.9.1"
+pytest = ">=5.0.0"
+
+[[package]]
 name = "python-dotenv"
 version = "0.19.0"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -286,7 +298,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "14a2953aead0d6a7e93e5fa47a91c82036569df203c2567687ec5ee4b47dca8e"
+content-hash = "e3b0f3a7d6f5253614d4df7b2861778509989cd0bb91b4be2cb05c3220c69c8b"
 
 [metadata.files]
 astroid = [
@@ -439,6 +451,10 @@ pyparsing = [
 pytest = [
     {file = "pytest-6.2.5-py3-none-any.whl", hash = "sha256:7310f8d27bc79ced999e760ca304d69f6ba6c6649c0b60fb0e04a4a77cacc134"},
     {file = "pytest-6.2.5.tar.gz", hash = "sha256:131b36680866a76e6781d13f101efb86cf674ebb9762eb70d3082b6f29889e89"},
+]
+pytest-dotenv = [
+    {file = "pytest-dotenv-0.5.2.tar.gz", hash = "sha256:2dc6c3ac6d8764c71c6d2804e902d0ff810fa19692e95fe138aefc9b1aa73732"},
+    {file = "pytest_dotenv-0.5.2-py3-none-any.whl", hash = "sha256:40a2cece120a213898afaa5407673f6bd924b1fa7eafce6bda0e8abffe2f710f"},
 ]
 python-dotenv = [
     {file = "python-dotenv-0.19.0.tar.gz", hash = "sha256:f521bc2ac9a8e03c736f62911605c5d83970021e3fa95b37d769e2bbbe9b6172"},
