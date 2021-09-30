@@ -1,11 +1,38 @@
 import unittest
 from huffman_coding import HuffmanCoding
-from huffman_node import HuffmanNode
+from config import FILE_PATH
+
+class FakeHuffmanNode:
+    def __init__(self, character, frequency, left=None, right=None):
+        self.character = character
+        self.frequency = frequency
+        self.left = left
+        self.right = right
+
+    @property
+    def get_character(self):
+        return self.character
+
+    @property
+    def get_frequency(self):
+        return self.frequency
+
+    @property
+    def get_left_node(self):
+        return self.left
+
+    @property
+    def get_right_node(self):
+        return self.right
 
 
 class TestHuffmanCoding(unittest.TestCase):
     def setUp(self):
-        self.huffman_coding = HuffmanCoding("test.txt")
+        self.huffman_coding = HuffmanCoding(FILE_PATH)
+
+        self.left_node = FakeHuffmanNode("a", 1)
+        self.right_node = FakeHuffmanNode("b", 2)
+        self.root = FakeHuffmanNode(None, 3, self.left_node, self.right_node)
 
     def test_get_frequency_dict(self):
         dictionary = self.huffman_coding.frequency_dict("aa")
@@ -21,23 +48,17 @@ class TestHuffmanCoding(unittest.TestCase):
         self.assertEqual(len(self.huffman_coding.get_node_heap), 1)
 
     def test_create_binary_codes(self):
-        left = HuffmanNode("a", 1)
-        right = HuffmanNode("b", 2)
-        node = HuffmanNode(None, 3, left, right)
-        self.huffman_coding.create_binary_codes(node, "")
+        self.huffman_coding.create_binary_codes(self.root, "")
         self.assertEqual(self.huffman_coding.get_encoding_binary_codes, {
                          "a": "0", "b": "1"})
 
     def test_encode_text(self):
-        left = HuffmanNode("a", 1)
-        right = HuffmanNode("b", 2)
-        node = HuffmanNode(None, 3, left, right)
-        self.huffman_coding.create_binary_codes(node, "")
+        self.huffman_coding.create_binary_codes(self.root, "")
         self.assertEqual(self.huffman_coding.encode_text("abb"), "011")
 
     def test_decode_text(self):
-        left = HuffmanNode("a", 1)
-        right = HuffmanNode("b", 2)
-        node = HuffmanNode(None, 3, left, right)
-        self.huffman_coding.create_binary_codes(node, "")
+        self.huffman_coding.create_binary_codes(self.root, "")
         self.assertEqual(self.huffman_coding.decode_text("011"), "abb")
+
+    def test_compress(self):
+        self.assertEqual(self.huffman_coding.compress(), 35)
