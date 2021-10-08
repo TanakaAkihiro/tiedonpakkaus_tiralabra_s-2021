@@ -12,8 +12,6 @@
 
 [Viikko 3](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/viikkoraportit/viikko3.md)
 
-## Testikattavuudet
+[Viikko 4](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/viikkoraportit/viikko4.md)
 
-[Viikko 2](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/testikattavuus_vko2.png)
-
-[Viikko 3](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/testikattavuus3.png)
+[Viikko 5](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/viikkoraportit/viikko5.md)
