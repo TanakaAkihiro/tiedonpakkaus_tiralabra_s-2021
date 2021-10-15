@@ -10,8 +10,9 @@ class LZ77:
     '''
     def __init__(self, path):
         self.__path = path
-        self.__sb_size = 512
+        self.__sb_size = 200
         self.__lab_size = 15
+        self.__padding = 0
 
     def search_best_match(self, text, index):
         match_offset = -1
@@ -40,12 +41,14 @@ class LZ77:
         result = ""
         while index < len(text):
             match = self.search_best_match(text, index)
+            
 
             if match:
                 offset = format(match[0], "b")
                 length = format(match[1], "b")
-                result = result + "1" + offset.rjust(12, '0') + length.rjust(4,'0')
+                result = result + "1" + offset.rjust(8, '0') + length.rjust(4,'0')
                 index += match[1]
+                
             
             else:
                 symbol = format(ord(text[index]), "b")
@@ -78,6 +81,50 @@ class LZ77:
             byte_list.append(int(i, 2))
         return bytearray(byte_list)
 
+    def decode_byte_code(self, code):
+        '''Convert numbers to binary numbers and connect the binary numbers to make one string
+
+        Args
+        ----
+            code: compressed text
+
+        Returns
+        -------
+            binary_text: text written in binary numerical system
+        '''
+        code = bytes(code)
+        binary_text = ""
+        for i in code:
+            byte = bin(i)[2:].rjust(8, "0")
+            binary_text += str(byte)
+        return binary_text
+
+    def decode_text(self, binary_code):
+        result = []
+        while len(binary_code) >= 9:
+            boolean = binary_code[0]
+            binary_code = binary_code[1:]
+            
+
+            if boolean == "1":
+                offset = int(binary_code[:8], 2)
+                binary_code = binary_code[8:]
+                length = int(binary_code[:4], 2)
+                binary_code = binary_code[4:]
+                for i in range(length):
+                    result.append(result[-offset])
+                    
+            
+            else:
+                character = int(binary_code[:8], 2).to_bytes(1, byteorder='big')
+                result.append(character)
+                binary_code = binary_code[8:]
+
+        result = b''.join(result)
+
+        return result
+
+
     
     def compress(self):
         with open(self.__path) as file:
@@ -90,3 +137,20 @@ class LZ77:
             file.write(binary_code)
         
         return os.path.getsize(compressed_file)
+    
+    def decompress(self):
+        '''Decompress the given file.
+        '''
+        with open(os.path.splitext(self.__path)[0] + ".bin", "rb") as file:
+            binary_code = file.read()
+            binary_code = self.decode_byte_code(binary_code)
+            while self.__padding > 0:
+                binary_code = binary_code[:-1]
+                self.__padding -= 1
+            text = self.decode_text(binary_code)
+
+        decompressed_file = os.path.splitext(self.__path)[0] + "_decompressed.txt"
+        with open(decompressed_file, "wb") as file:
+            file.write(text)
+        
+        return os.path.getsize(self.__path)
