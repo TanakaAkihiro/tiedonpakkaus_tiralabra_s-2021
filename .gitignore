@@ -6,3 +6,4 @@ test-text.txt
 htmlcov
 .coverage
 .pytest_cache
+*.pyc
