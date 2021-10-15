@@ -1,6 +1,5 @@
 import heapq
 import os
-from types import new_class
 from huffman_node import HuffmanNode
 
 
@@ -98,6 +97,7 @@ class HuffmanCoding:
         Returns
         -------
             encoding_binary_codes: dictionary to convert text to binary code
+            print(frequency)
         '''
         return self.__encoding_binary_codes
 
