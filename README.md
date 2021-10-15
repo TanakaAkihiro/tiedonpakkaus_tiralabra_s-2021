@@ -15,3 +15,5 @@
 [Viikko 4](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/viikkoraportit/viikko4.md)
 
 [Viikko 5](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/viikkoraportit/viikko5.md)
+
+[Viikko 6](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/viikkoraportit/viikko6.md)
