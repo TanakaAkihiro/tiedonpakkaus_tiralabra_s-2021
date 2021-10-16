@@ -17,3 +17,28 @@
 [Viikko 5](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/viikkoraportit/viikko5.md)
 
 [Viikko 6](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/viikkoraportit/viikko6.md)
+
+## Asennus
+
+Asenna riippuvuudet komennolla:
+
+```
+poetry install
+```
+
+## Komentorivitoiminnot
+
+Ohjelman pystyy suorittamaan komennolla:
+```
+poetry run invoke start
+```
+
+Testit suoritetaan komennolla:
+```
+poetry run invoke test
+```
+
+Testikattavuusraportin voi generoida komennolla:
+```
+poetry run invoke coverage-report
+```
