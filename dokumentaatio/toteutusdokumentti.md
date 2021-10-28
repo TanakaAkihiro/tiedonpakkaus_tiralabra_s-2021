@@ -16,16 +16,39 @@ Kärkkäisen (2016) mukaan LZ77-algoritmi voidaan toteuttaa ajassa O(n) eli käy
 ## Saavutetut aika- ja tilavaativuudet
 ### Huffmanin koodaus
 
-Aikavaativuus on O(*n*log*n*), kuten olikin tavoitteena.
 Käydään läpi, missä ajassa luokan `Huffman coding` metodit suoriutuvat
 
 `frequency_dict` - O(*n*), käy kerran tiedoston läpi
+
 `order_nodes` - O(*n*log*n*), käy kerran kirjaston `frequency` läpi ja lisää alkion kekoon `node_heap`
+
 `connect_nodes` - O(*n*log*n*), käy kerran keon `node_heap` läpi ja lisää alkion kekoon `node_heap`
+
 `create_binary_codes` - O(*n*), käy kerran Huffmanin puun läpi
+
 `encode_text` - O(*n*), käy kerran tiedoston läpi
+
 `pad_binary_code` - O(*n*), käy kerran koodatun tiedoston läpi
+
 `compress` - O(*n*log*n*), suorittaa kerran jokaista yllä olevaa metodia
+
+Aikavaativuus on siis O(*n*log*n*), kuten olikin tavoitteena.
+
+Tilavaativuus on O(*n* + *k*), missä *n* on tiedoston tekstin merkkien määrä ja *k* Huffmanin puun solmujen määrä.
+
+### LZ77-algoritmi
+
+Käydään läpi, missä ajassa luokan `LZ77` metodit suoriutuvat
+
+`search_best_match` - O(12*n*) = O(*n*), käy 12 kertaa osajonojen *n* läpi
+
+`encode_text` - O(*n*²), käy kerran tiedoston läpi, jonka aikana suorittaa metodin `search_best_match`
+
+`pad_binary_code` - O(*n*), käy kerran koodatun tiedoston läpi
+
+`compress` - O(*n*²), suorittaa kerran jokaista yllä olevaa metodia
+
+
 
 ## Suorituskyky- ja O-analyysivertailu
 
