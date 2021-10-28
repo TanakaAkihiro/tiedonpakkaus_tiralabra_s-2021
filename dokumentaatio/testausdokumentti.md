@@ -8,4 +8,4 @@ Ohjelma yksikkö- ja integraatiotestausta on testattu unittestilla ja järjestel
 * Luokkaa `HuffmanCoding` testataan tiedostossa `huffman_coding_test.py`. Luokan testissä hyödynnetään valeluokkaa `FakeHuffmanNode`
 
 ## Testauskattavuus
-![Testikattavuus](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/testikattavuus4.png)
+![Testikattavuus](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/testikattavuus7.png)
