@@ -21,14 +21,22 @@ Kun pakattava tiedosto on oikeassa hakemistossa ja ympäristömuuttujalla on oik
 ```
 poetry run invoke start
 ```
+
 Ohjelma näyttää aluksi seuraavalta
+
 ![kuva1](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/kaytto-ohje1.png)
 
 Käyttäjä voi valita pakkausmetodin kahdesta vaihtoehdosta:
 - antamalla syötteen "1" tiedosto pakataan (ja puretaan) Huffmanin pakkauksella
+
 ![kuva2](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/kaytto-ohje2.png)
+
 - antamalla syötteen "2" tiedosto pakataan (ja puretaan) LZ77-algoritmilla
+
 ![kuva3](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/kaytto-ohje3.png)
 
+
+
 Ohjelman voi lopettaa antamalla syötteen "3".
+
 ![kuva4](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/kaytto-ohje4.png)
