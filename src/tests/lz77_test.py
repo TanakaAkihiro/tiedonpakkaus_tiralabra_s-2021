@@ -20,7 +20,7 @@ class TestLZ77(unittest.TestCase):
         self.assertEqual(self.lz.decode_byte_code(bytearray(b'0\x98\xa0F')), "00110000100110001010000001000110")
 
     def test_decode_text(self):
-        self.assertEqual(self.lz.decode_text("00110000100110001010000001000110"), "ababa")
+        self.assertEqual(self.lz.decode_text("00110000100110001010000001000110"), b"ababa")
 
     
     def test_compress(self):
