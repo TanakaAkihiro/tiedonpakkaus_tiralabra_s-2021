@@ -85,7 +85,6 @@ class HuffmanCoding:
         '''
         if node.get_left_node is None and node.get_right_node is None:
             self.__encoding_binary_codes[node.get_character] = code
-            self.__decoding_binary_codes[code] = node.get_character
             return
 
         self.create_binary_codes(node.get_left_node, code+"0")
@@ -109,11 +108,8 @@ class HuffmanCoding:
         -------
             length + result: length of the dictionary and binary code of the dictionary
         '''
-        dictionary = {}
-        for i, j in self.get_encoding_binary_codes.items():
-            dictionary[i] = int(j, 2)
-        string = json.dumps(dictionary)
-        result = ''.join(format(ord(letter), 'b') for letter in string)
+        string = json.dumps(self.get_encoding_binary_codes)
+        result = ''.join(format(ord(letter), 'b').rjust(8, '0') for letter in string)
         length = format(len(str(result)), "b")
         length = length.rjust(16, '0')
         return length + result
@@ -171,7 +167,6 @@ class HuffmanCoding:
         -------
             binary_text: text written in binary numerical system
         '''
-
         code = bytes(code)
         binary_text = ""
         for i in code:
@@ -180,7 +175,7 @@ class HuffmanCoding:
         return binary_text
 
     def decode_text(self, binary_code):
-        '''Rewrite the given binary codes to its original form.
+        '''Decode the encoded dictionary and rewrite the given binary codes to its original form.
 
         Args
         ----
@@ -190,6 +185,15 @@ class HuffmanCoding:
         -------
             result: original text
         '''
+        dictionary_length = int(binary_code[:16], 2)
+        binary_code = binary_code[16:]
+        dictionary_string = ""
+        for byte in range(0, dictionary_length, 8):
+            dictionary_string += chr(int(binary_code[byte:byte+8], 2))
+        dictionary = json.loads(dictionary_string)
+        self.__decoding_binary_codes = {y:x for x,y in dictionary.items()}
+        binary_code = binary_code[dictionary_length:]
+
         result = ""
         code = ""
         for i in binary_code:
