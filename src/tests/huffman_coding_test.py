@@ -52,6 +52,10 @@ class TestHuffmanCoding(unittest.TestCase):
         self.assertEqual(self.huffman_coding.get_encoding_binary_codes, {
                          "a": "0", "b": "1"})
 
+    def test_encode_dictionary(self):
+        self.huffman_coding.create_binary_codes(self.root, "")
+        self.assertEqual(self.huffman_coding.encode_dictionary(), "00000000011001001111011100010110000110001011101010000011000010110010000010001011000101000101110101000001100011111101")
+
     def test_encode_text(self):
         self.huffman_coding.create_binary_codes(self.root, "")
         self.assertEqual(self.huffman_coding.encode_text("abb"), "011")

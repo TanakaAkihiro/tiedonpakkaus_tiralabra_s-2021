@@ -1,5 +1,6 @@
 import heapq
 import os
+import json
 from huffman_node import HuffmanNode
 
 
@@ -101,6 +102,23 @@ class HuffmanCoding:
         '''
         return self.__encoding_binary_codes
 
+    def encode_dictionary(self):
+        '''Convert dictionary to string and encode it to binary code.
+        
+        Returns
+        -------
+            length + result: length of the dictionary and binary code of the dictionary
+        '''
+        dictionary = {}
+        for i, j in self.get_encoding_binary_codes.items():
+            dictionary[i] = int(j, 2)
+        string = json.dumps(dictionary)
+        result = ''.join(format(ord(letter), 'b') for letter in string)
+        length = format(len(str(result)), "b")
+        length = length.rjust(16, '0')
+        return length + result
+        
+
     def encode_text(self, text):
         '''Rewrite the given text with the created binary codes.
 
@@ -153,6 +171,7 @@ class HuffmanCoding:
         -------
             binary_text: text written in binary numerical system
         '''
+
         code = bytes(code)
         binary_text = ""
         for i in code:
@@ -193,7 +212,7 @@ class HuffmanCoding:
             self.order_nodes(frequency)
             self.connect_nodes()
             self.create_binary_codes(heapq.heappop(self.__node_heap)[2], "")
-            binary_code = self.encode_text(text)
+            binary_code = self.encode_dictionary() + self.encode_text(text)
             binary_code = self.pad_binary_code(binary_code)
 
         compressed_file = os.path.splitext(self.__path)[0]+".bin" 
