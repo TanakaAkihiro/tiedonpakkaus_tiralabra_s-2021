@@ -16,6 +16,8 @@ Kärkkäisen (2016) mukaan LZ77-algoritmi voidaan toteuttaa ajassa O(n) eli käy
 ## Saavutetut aika- ja tilavaativuudet
 ### Huffmanin koodaus
 
+
+
 Käydään läpi, missä ajassa luokan `Huffman coding` metodit suoriutuvat
 
 `frequency_dict` - O(*n*), käy kerran tiedoston läpi
@@ -38,6 +40,8 @@ Tilavaativuus on O(*n* + *k*), missä *n* on tiedoston tekstin merkkien määrä
 
 ### LZ77-algoritmi
 
+
+
 Käydään läpi, missä ajassa luokan `LZ77` metodit suoriutuvat
 
 `search_best_match` - O(12*n*) = O(*n*), käy 12 kertaa osajonojen *n* läpi
@@ -48,9 +52,54 @@ Käydään läpi, missä ajassa luokan `LZ77` metodit suoriutuvat
 
 `compress` - O(*n*²), suorittaa kerran jokaista yllä olevaa metodia
 
+Aikavaativuus on siis O(*n*²).
+
 
 
 ## Suorituskyky- ja O-analyysivertailu
+Pakkausalgoritmeja suoritettiin viidellä eri tiedostolla:
+
+1. Lorem ipsum
+2. Yksi pitkä merkkijono, joka koostuu numeroista 0-9
+3. Yksi pitkä merkkijono, joka koostuu merkeistä '0' ja '1'
+4. Yksi pitkä merkkijono, joka koostuu pelkästään merkistä 'a'
+5. Seitsemän veljestä
+
+Ensimmäinen kuva esittää tiedostojen alkuperäisen koon sekä niiden koon Huffmanin koodauksen tai LZ77-pakkauksen jälkeen.
+
+![kuva1](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/toteutus1.png)
+
+Toinen kuva esittää pakattavien tiedostojen alkuperäisen koon ja Huffmanin koodauksella/LZ77 algoritmilla pakatun tiedoston koon suhdetta
+
+![kuva2](https://github.com/TanakaAkihiro/tiedonpakkaus_tiralabra_s-2021/blob/master/dokumentaatio/kuvat/toteutus2.png)
+
+Huffmanin koodaus toimii tasaisesti hyvin. Mitä vähemmän erilaisia merkkejä esiintyy tiedostossa, sitä tehokkaammin Huffmanin koodaus voi pakata tiedoston.
+
+LZ77 algoritmi toimii tehokkaammin kuin Huffmanin koodaus, kun tiedostossa esiintyy paljon toistuvia jaksoja. Toisaalta, jos toistuvia jaksoja esiintyy harvoin, pakkaussuhde on hyvin korkea (jopa yli 100%).
+
+
+Seuraava taulu esittää pakkaamisen kestoa millisekunneissa (ms)
+
+|           | Huffmanin koodaus |      LZ77      |
+|-----------|:-----------------:|---------------:|
+|   Text1   |        1.86       |      108.79    |
+|   Text2   |       104.99      |    36894.95    |
+|   Text3   |       125.29      |    22088.88    |
+|   Text4   |       208.52      |    38352.64    |
+|   Text5   |       222.41      |   309878.04    |
+
+Seuraava taulu esittää purkamisen kestoa millisekunneissa (ms)
+
+|           | Huffmanin koodaus |      LZ77      |
+|-----------|:-----------------:|---------------:|
+|   Text1   |        2.16       |        0.55    |
+|   Text2   |       134.02      |     3234.67    |
+|   Text3   |       172.84      |     1920.97    |
+|   Text4   |       223.15      |     4095.96    |
+|   Text5   |       590.37      |   118025.62    |
+
+
+
 
 ## Työn mahdolliset puutteet ja parannusehdotukset
 - Ohjelma pystyy pakata ainoastaan tekstitiedostoja
