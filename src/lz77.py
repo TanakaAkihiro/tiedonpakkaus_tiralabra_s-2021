@@ -82,6 +82,7 @@ class LZ77:
 
     def pad_binary_code(self, code):
         '''Pad the encoded text's length in order to make it divisible by 8.
+        Add the amount of paddings to the beginning of the code
 
         Args
         ----
@@ -95,7 +96,7 @@ class LZ77:
         while len(code) % 8 != 0:
             code += "0"
             pad_amount += 1
-        self.__padding = pad_amount
+        code = format(pad_amount, 'b').rjust(8, '0') + code
         division = []
         length = len(code)
         for i in range(0, length//8):
@@ -121,7 +122,8 @@ class LZ77:
         for i in code:
             byte = bin(i)[2:].rjust(8, "0")
             binary_text += str(byte)
-        return binary_text
+        self.__padding = int(binary_text[:8], 2)
+        return binary_text[8:]
 
     def decode_text(self, binary_code):
         '''Decode the encoded dictionary and rewrite the given binary codes to its original form.
