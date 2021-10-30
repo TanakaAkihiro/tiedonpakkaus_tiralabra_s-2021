@@ -9,7 +9,6 @@ class LZ77:
         sb_size: search buffer size
         lab_size: look ahead buffer size
         padding: number of zeros to pad for making list of bytes
-
     '''
     def __init__(self, path):
         self.__path = path

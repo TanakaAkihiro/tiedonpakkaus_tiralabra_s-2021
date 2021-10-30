@@ -13,6 +13,7 @@ class HuffmanCoding:
         node_heap: binary heap for ordering the characters that shows up in the file by their occurrences
         encoding_binary_codes: dictionary for new binary codes for the used characters
         decoding_binary_codes: dictionary for decoding compressed file
+        padding: number of zeros to pad for making list of bytes
     '''
 
     def __init__(self, path):
