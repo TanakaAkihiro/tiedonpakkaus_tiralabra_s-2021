@@ -208,7 +208,7 @@ class HuffmanCoding:
 
         Returns
         -------
-            len(binary_code): size of compressed file
+            os.path.getsize(compressed_file): size of compressed file
         '''
         with open(self.__path) as file:
             text = file.read()
@@ -227,6 +227,10 @@ class HuffmanCoding:
 
     def decompress(self):
         '''Decompress the given file.
+
+        Returns
+        -------
+            os.path.getsize(decompressed_file): size of compressed file
         '''
         with open(os.path.splitext(self.__path)[0] + ".bin", "rb") as file:
             binary_code = file.read()
