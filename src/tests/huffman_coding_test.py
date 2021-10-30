@@ -54,7 +54,7 @@ class TestHuffmanCoding(unittest.TestCase):
 
     def test_encode_dictionary(self):
         self.huffman_coding.create_binary_codes(self.root, "")
-        self.assertEqual(self.huffman_coding.encode_dictionary(), "00000000011001001111011100010110000110001011101010000011000010110010000010001011000101000101110101000001100011111101")
+        self.assertEqual(self.huffman_coding.encode_dictionary(), "00000000101000000111101100100010011000010010001000111010001000000010001000110000001000100010110000100000001000100110001000100010001110100010000000100010001100010010001001111101")
 
     def test_encode_text(self):
         self.huffman_coding.create_binary_codes(self.root, "")
@@ -62,10 +62,10 @@ class TestHuffmanCoding(unittest.TestCase):
 
     def test_decode_text(self):
         self.huffman_coding.create_binary_codes(self.root, "")
-        self.assertEqual(self.huffman_coding.decode_text("011"), "abb")
+        self.assertEqual(self.huffman_coding.decode_text("00000000101000000111101100100010011000010010001000111010001000000010001000110000001000100010110000100000001000100110001000100010001110100010000000100010001100010010001001111101011"), "abb")
 
     def test_compress(self):
-        self.assertEqual(self.huffman_coding.compress(), 35)
+        self.assertEqual(self.huffman_coding.compress(), 441)
     
     def test_decompress(self):
         self.assertEqual(self.huffman_coding.decompress(), 57)
