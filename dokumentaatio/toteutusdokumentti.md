@@ -82,21 +82,21 @@ Seuraava taulu esittää pakkaamisen kestoa millisekunneissa (ms)
 
 |           | Huffmanin koodaus |      LZ77      |
 |-----------|:-----------------:|---------------:|
-|   Text1   |        1.86       |      108.79    |
-|   Text2   |       104.99      |    36894.95    |
-|   Text3   |       125.29      |    22088.88    |
-|   Text4   |       208.52      |    38352.64    |
-|   Text5   |       222.41      |   309878.04    |
+|   Text1   |         3.29      |      108.79    |
+|   Text2   |        93.90      |    36894.95    |
+|   Text3   |       149.78      |    22088.88    |
+|   Text4   |       208.77      |    38352.64    |
+|   Text5   |       257.93      |   309878.04    |
 
 Seuraava taulu esittää purkamisen kestoa millisekunneissa (ms)
 
 |           | Huffmanin koodaus |      LZ77      |
 |-----------|:-----------------:|---------------:|
-|   Text1   |        2.16       |        0.55    |
-|   Text2   |       134.02      |     3234.67    |
-|   Text3   |       172.84      |     1920.97    |
-|   Text4   |       223.15      |     4095.96    |
-|   Text5   |       590.37      |   118025.62    |
+|   Text1   |         4.01      |        0.55    |
+|   Text2   |       152.79      |     3234.67    |
+|   Text3   |       180.05      |     1920.97    |
+|   Text4   |       233.08      |     4095.96    |
+|   Text5   |       665.27      |   118025.62    |
 
 
 
