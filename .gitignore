@@ -3,6 +3,7 @@ test-text.txt
 *.bin
 *decompressed.txt
 
+
 htmlcov
 .coverage
 .pytest_cache
