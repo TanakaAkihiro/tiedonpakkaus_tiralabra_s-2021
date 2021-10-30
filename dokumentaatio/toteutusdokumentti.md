@@ -94,21 +94,21 @@ Seuraava taulu esittää pakkaamisen kestoa millisekunneissa (ms)
 
 |           | Huffmanin koodaus |      LZ77      |
 |-----------|:-----------------:|---------------:|
-|   Text1   |         3.29      |      108.79    |
-|   Text2   |        93.90      |    36894.95    |
-|   Text3   |       149.78      |    22088.88    |
-|   Text4   |       208.77      |    38352.64    |
-|   Text5   |       257.93      |   309878.04    |
+|   Text1   |         3.06      |      134.60    |
+|   Text2   |       130.75      |    36326.69    |
+|   Text3   |       121.76      |    23117.36    |
+|   Text4   |       205.79      |    36913.22    |
+|   Text5   |       232.77      |   348690.33    |
 
 Seuraava taulu esittää purkamisen kestoa millisekunneissa (ms)
 
 |           | Huffmanin koodaus |      LZ77      |
 |-----------|:-----------------:|---------------:|
-|   Text1   |         4.01      |        0.55    |
-|   Text2   |       152.79      |     3234.67    |
-|   Text3   |       180.05      |     1920.97    |
-|   Text4   |       233.08      |     4095.96    |
-|   Text5   |       665.27      |   118025.62    |
+|   Text1   |         3.80      |        0.57    |
+|   Text2   |       162.42      |     2881.49    |
+|   Text3   |       180.87      |     2002.49    |
+|   Text4   |       235.25      |     3725.39    |
+|   Text5   |       643.18      |   118788.64    |
 
 Taulusta tulee selkeästi ilmi, että Huffmanin koodaus toimii ajalla tehokkaammin kuin LZ77 algoritmi. Tämä johtuukin siitä, että Huffmanin koodauksen aikavaativuus on O(*n*log*n*) ja LZ77 algoritmin O(*n*²).
 
