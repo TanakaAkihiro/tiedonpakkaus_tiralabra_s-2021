@@ -134,6 +134,7 @@ class HuffmanCoding:
 
     def pad_binary_code(self, code):
         '''Pad the encoded text's length in order to make it divisible by 8.
+        Add the amount of paddings to the beginning of the code
 
         Args
         ----
@@ -147,7 +148,7 @@ class HuffmanCoding:
         while len(code) % 8 != 0:
             code += "0"
             pad_amount += 1
-        self.__padding = pad_amount
+        code = format(pad_amount, 'b').rjust(8, '0') + code
         division = []
         length = len(code)
         for i in range(0, length//8):
@@ -174,8 +175,8 @@ class HuffmanCoding:
         for i in code:
             byte = bin(i)[2:].rjust(8, "0")
             binary_text += str(byte)
-        self.__padding = int(binary_text[:3], 2)
-        return binary_text[3:]
+        self.__padding = int(binary_text[:8], 2)
+        return binary_text[8:]
 
     def decode_text(self, binary_code):
         '''Decode the encoded dictionary and rewrite the given binary codes to its original form.
@@ -221,7 +222,7 @@ class HuffmanCoding:
             self.order_nodes(frequency)
             self.connect_nodes()
             self.create_binary_codes(heapq.heappop(self.__node_heap)[2], "")
-            binary_code = format(self.__padding, 'b').rjust(3, '0') + self.encode_dictionary() + self.encode_text(text)
+            binary_code = self.encode_dictionary() + self.encode_text(text)
             binary_code = self.pad_binary_code(binary_code)
 
         compressed_file = os.path.splitext(self.__path)[0]+".bin" 
