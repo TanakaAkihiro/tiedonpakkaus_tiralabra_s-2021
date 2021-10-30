@@ -5,8 +5,11 @@ class LZ77:
 
     Attributes
     ----------
+        path: path of the file that will be compressed/decompressed
         sb_size: search buffer size
-        lab_size: look ahead buffer size 
+        lab_size: look ahead buffer size
+        padding: number of zeros to pad for making list of bytes
+
     '''
     def __init__(self, path):
         self.__path = path
@@ -15,6 +18,18 @@ class LZ77:
         self.__padding = 0
 
     def search_best_match(self, text, index):
+        '''Search the longest match in the search buffer
+
+        Args
+        ----
+            text: text of the file
+            index: index of the new character that will be handled
+        
+        Returns
+        -------
+            None: if no match was found in the search buffer
+            (match_offset, match_length): the length and offset of the found match from the variable index
+        '''
         match_offset = -1
         match_length = -1
 
@@ -37,6 +52,16 @@ class LZ77:
         return (match_offset, match_length)
     
     def encode_text(self, text):
+        '''Rewrite the given text by the characters' binary code or by the reference of the match
+
+        Args
+        ----
+            text: text of the file
+
+        Returns
+        -------
+            result: compressed text
+        '''
         index = 0
         result = ""
         while index < len(text):
@@ -100,6 +125,16 @@ class LZ77:
         return binary_text
 
     def decode_text(self, binary_code):
+        '''Decode the encoded dictionary and rewrite the given binary codes to its original form.
+
+        Args
+        ----
+            binary_code: text written in binary numerical system
+
+        Returns
+        -------
+            result: original text
+        '''
         result = []
         while len(binary_code) >= 9:
             boolean = binary_code[0]
@@ -127,6 +162,12 @@ class LZ77:
 
     
     def compress(self):
+        '''Compress the given file
+
+        Returns
+        -------
+            os.path.getsize(compressed_file): size of compressed file
+        '''
         with open(self.__path) as file:
             text = file.read()
             binary_code = self.encode_text(text)
@@ -139,7 +180,11 @@ class LZ77:
         return os.path.getsize(compressed_file)
     
     def decompress(self):
-        '''Decompress the given file.
+        '''Decompress the given file
+
+        Returns
+        -------
+            os.path.getsize(decompressed_file): size of compressed file
         '''
         with open(os.path.splitext(self.__path)[0] + ".bin", "rb") as file:
             binary_code = file.read()
