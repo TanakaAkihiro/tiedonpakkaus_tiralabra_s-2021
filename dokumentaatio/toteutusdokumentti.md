@@ -28,11 +28,19 @@ Käydään läpi, missä ajassa luokan `Huffman coding` metodit suoriutuvat
 
 `create_binary_codes` - O(*n*), käy kerran Huffmanin puun läpi
 
+`encode_dictionary` - O(*n*), muuttaa sanakirjan merkkijonoksi ja käy kerran merkkijonon merkit läpi
+
 `encode_text` - O(*n*), käy kerran tiedoston läpi
 
 `pad_binary_code` - O(*n*), käy kerran koodatun tiedoston läpi
 
 `compress` - O(*n*log*n*), suorittaa kerran jokaista yllä olevaa metodia
+
+`decode_byte_code` - O(*n*), käy kerran pakatun tiedoston läpi
+
+`decode_text` - O(*n*), käy kerran annetun binäärilukujen merkkijonon läpi
+
+`decompress` - O(*n*), suorittaa kerran metodeja `decode_byte_code` ja `decode_text`
 
 Aikavaativuus on siis O(*n*log*n*), kuten olikin tavoitteena.
 
@@ -51,6 +59,10 @@ Käydään läpi, missä ajassa luokan `LZ77` metodit suoriutuvat
 `pad_binary_code` - O(*n*), käy kerran koodatun tiedoston läpi
 
 `compress` - O(*n*²), suorittaa kerran jokaista yllä olevaa metodia
+
+`decode_byte_code` - O(*n*), käy kerran pakatun tiedoston läpi
+
+
 
 Aikavaativuus on siis O(*n*²).
 
@@ -98,7 +110,9 @@ Seuraava taulu esittää purkamisen kestoa millisekunneissa (ms)
 |   Text4   |       233.08      |     4095.96    |
 |   Text5   |       665.27      |   118025.62    |
 
+Taulusta tulee selkeästi ilmi, että Huffmanin koodaus toimii ajalla tehokkaammin kuin LZ77 algoritmi. Tämä johtuukin siitä, että Huffmanin koodauksen aikavaativuus on O(*n*log*n*) ja LZ77 algoritmin O(*n*²).
 
+Toinen tärkeä havainto, joka nähdään taulusta on se, että Huffmanin koodauksella pakkaamiseen kestää vähemmän aikaa kuin purkamiseen ja LZ77 algoritmilla toisin päin.
 
 
 ## Työn mahdolliset puutteet ja parannusehdotukset
