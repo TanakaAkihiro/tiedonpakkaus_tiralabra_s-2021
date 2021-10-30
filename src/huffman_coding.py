@@ -158,7 +158,8 @@ class HuffmanCoding:
         return bytearray(byte_list)
 
     def decode_byte_code(self, code):
-        '''Convert numbers to binary numbers and connect the binary numbers to make one string
+        '''Convert numbers to binary numbers and connect the binary numbers to make one string.
+        Check the amount of paddings and return the rest of the string.
 
         Args
         ----
@@ -173,7 +174,8 @@ class HuffmanCoding:
         for i in code:
             byte = bin(i)[2:].rjust(8, "0")
             binary_text += str(byte)
-        return binary_text
+        self.__padding = int(binary_text[:3], 2)
+        return binary_text[3:]
 
     def decode_text(self, binary_code):
         '''Decode the encoded dictionary and rewrite the given binary codes to its original form.
@@ -206,6 +208,8 @@ class HuffmanCoding:
 
     def compress(self):
         '''Compress the given file and rewrite it with the created binary codes on new file.
+        The content of the new file is constructed by following:
+        Amount of padding + Encoded dictionary + Encoded text
 
         Returns
         -------
@@ -217,7 +221,7 @@ class HuffmanCoding:
             self.order_nodes(frequency)
             self.connect_nodes()
             self.create_binary_codes(heapq.heappop(self.__node_heap)[2], "")
-            binary_code = self.encode_dictionary() + self.encode_text(text)
+            binary_code = format(self.__padding, 'b').rjust(3, '0') + self.encode_dictionary() + self.encode_text(text)
             binary_code = self.pad_binary_code(binary_code)
 
         compressed_file = os.path.splitext(self.__path)[0]+".bin" 
